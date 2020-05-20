@@ -1,0 +1,419 @@
+﻿DROP DATABASE IF EXISTS db_fast_pharms;
+
+CREATE DATABASE IF NOT EXISTS db_fast_pharms;
+
+USE db_fast_pharms;
+
+CREATE TABLE `tbl_users` (
+	`id` INT AUTO_INCREMENT PRIMARY KEY,
+	`username` varchar(20) NOT NULL,
+	`password` varchar(20) NOT NULL
+);
+INSERT INTO `tbl_users`(`username`, `password`) VALUES('FASTfast', '123');
+
+CREATE TABLE `tbl_branch` (
+	`id` INT AUTO_INCREMENT PRIMARY KEY,
+	`name` varchar(50) NOT NULL DEFAULT ''
+);
+
+CREATE TABLE `tbl_department` (
+	`id` INT AUTO_INCREMENT PRIMARY KEY,
+	`name` varchar(50) NOT NULL DEFAULT ''
+);
+
+CREATE TABLE `tbl_category` (
+	`id` INT AUTO_INCREMENT PRIMARY KEY,
+	`name` varchar(50) NOT NULL DEFAULT ''
+);
+INSERT INTO `tbl_category`(`name`) VALUES('Primary Cost Category');
+
+CREATE TABLE `tbl_group` (
+	`id` INT AUTO_INCREMENT PRIMARY KEY,
+    `catId` INT NOT NULL,
+	`name` varchar(50) NOT NULL DEFAULT '',
+	CONSTRAINT `fk_group_catId` FOREIGN KEY (`catId`) REFERENCES `tbl_category`(`id`) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE `tbl_employee` (
+	`id` INT AUTO_INCREMENT PRIMARY KEY,
+    
+    -- genearl info
+	`title` varchar(50) NOT NULL DEFAULT '',
+	`surname` varchar(50) NOT NULL DEFAULT '',
+	`first_name` varchar(50) NOT NULL DEFAULT '',
+	`middle_name` varchar(50) NOT NULL DEFAULT '',
+	`date_of_birth` DATE DEFAULT '0000-00-00',
+	`marital_status` varchar(10) NOT NULL DEFAULT '',
+	`blood_group` varchar(20) NOT NULL DEFAULT '',
+	`gender` varchar(6) NOT NULL DEFAULT '',
+	`nationality` varchar(20) NOT NULL DEFAULT '',
+	`surburb` varchar(20) NOT NULL DEFAULT '',
+	`national_id` varchar(50) NOT NULL DEFAULT '',
+	`driver_id` varchar(20) NOT NULL DEFAULT '',
+	`number_of_kids` INT NOT NULL DEFAULT 0,
+	`religion` varchar(50) NOT NULL DEFAULT '',
+	`next_of_kin` varchar(50) NOT NULL DEFAULT '',
+	`tel_of_next_of_kin` varchar(15) NOT NULL DEFAULT '',
+    
+    -- employee company info
+	`staff_number` varchar(255) NOT NULL DEFAULT '',
+	`position` varchar(50) NOT NULL DEFAULT '',
+	`date_employed` date DEFAULT '0000-00-00',
+	`date_resigned` date DEFAULT '0000-00-00',
+	`date_of_confirmation` DATE DEFAULT '0000-00-00',
+	`branch` varchar(50) NOT NULL DEFAULT '',
+	`department` varchar(50) NOT NULL DEFAULT '',
+	`category` varchar(50) NOT NULL DEFAULT '',
+	`group` varchar(50) NOT NULL DEFAULT '',
+	`employment_type` varchar(50) NOT NULL DEFAULT '',
+	`appointment_letter`  varchar(255) NOT NULL DEFAULT '',
+	`contract_validity` varchar(50) NOT NULL DEFAULT '',
+    
+    -- statutory info
+	`income_tax_number` varchar(20),
+	`ssnit_number` varchar(50),
+	`tin_number` varchar(20),
+    
+    -- contact info
+	`city` varchar(50) NOT NULL DEFAULT '',
+	`state_or_province` varchar(20) NOT NULL DEFAULT '',
+	`zip_or_postal_code` varchar(10) NOT NULL DEFAULT '',
+	`country` varchar(20) NOT NULL DEFAULT '',
+	`mobile` varchar(15) NOT NULL DEFAULT '',
+	`home_telephone` varchar(15) NOT NULL DEFAULT '',
+	`work_number` varchar(15) NOT NULL DEFAULT '',
+	`work_email` varchar(100) NOT NULL DEFAULT '',
+	`other_email` varchar(100) NOT NULL DEFAULT '',
+	`house_number` varchar(15) NOT NULL DEFAULT '',
+	`last_place_of_work` varchar(50) NOT NULL DEFAULT '',
+	`address_1` varchar(255) NOT NULL DEFAULT '',
+	`address_2` varchar(255) NOT NULL DEFAULT '',
+    
+    -- QUALIFICATION
+	`highest_qualification` varchar(50) NOT NULL DEFAULT '',
+	`year_of_qualification` YEAR DEFAULT '0000',
+	`institution_of_qualification` varchar(100) NOT NULL DEFAULT '',
+    
+	`added_at` DATETIME,
+	`updated_at` DATETIME
+	-- CONSTRAINT `fk_emp_branch` FOREIGN KEY (`branch`) REFERENCES `tbl_branch`(`name`) ON DELETE CASCADE ON UPDATE CASCADE,
+	-- CONSTRAINT `fk_emp_department` FOREIGN KEY (`department`) REFERENCES `tbl_department`(`name`) ON DELETE CASCADE ON UPDATE CASCADE,
+	-- CONSTRAINT `fk_emp_group` FOREIGN KEY (`group`) REFERENCES `tbl_group`(`name`) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE `tbl_company` (
+	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	`name` VARCHAR(100) NOT NULL DEFAULT '',
+	`address` VARCHAR(255) NOT NULL DEFAULT '',
+	`logo` text NOT NULL,
+	`working_days` INT NOT NULL DEFAULT 0,
+	`added_at` DATETIME,
+	`updated_at` DATETIME
+);
+
+INSERT INTO `tbl_company`(`name`, `address`, `logo`, `working_days`, `added_at`) 
+VALUES('FAST TECHNOLOGIES','Cantoment Resident No. R14, Accra - Ghana','logo url',27,CURRENT_TIMESTAMP);
+
+CREATE TABLE `tbl_gra_refera` (
+	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	`tax_for` YEAR NOT NULL,
+	`amt_from` DECIMAL(10,2) NOT NULL,
+	`amt_to` DECIMAL(10,2) NOT NULL,
+	`chrg_amt` DECIMAL(10,2) NOT NULL,
+	`percentage` DECIMAL(10,2) NOT NULL,
+	`amt_crh` DECIMAL(10,2) NOT NULL,
+	`free_amt` DECIMAL(10,2) NOT NULL,
+	`added_at` DATETIME,
+	`updated_at` DATETIME
+);
+
+INSERT INTO `tbl_gra_refera` (`tax_for`,`amt_from`, `amt_to`, `chrg_amt`, `percentage`, `amt_crh`,`free_amt`, `added_at`) 
+VALUES	(2019,0,288,0,0,0,0,CURRENT_TIMESTAMP),
+		(2019,288,388,100,5,5,5,CURRENT_TIMESTAMP),
+		(2019,388,528,140,10,14,19,CURRENT_TIMESTAMP),
+		(2019,528,3528,3000,17.50,525,544,CURRENT_TIMESTAMP),
+		(2019,3528,20000,16472,25,4118,4662,CURRENT_TIMESTAMP),
+		(2019,20000,0,0,30,0,4662,CURRENT_TIMESTAMP);
+        
+        
+CREATE TABLE `tbl_payroll_units` (
+	`id` INT AUTO_INCREMENT PRIMARY KEY,
+	`type` VARCHAR(20) NOT NULL DEFAULT '',
+	`name` VARCHAR(20) NOT NULL DEFAULT '',
+	`symbol` VARCHAR(20) NOT NULL DEFAULT '',
+	`decimal_place` INT NOT NULL DEFAULT 2,
+	`first_unit` VARCHAR(20) NOT NULL DEFAULT '',
+	`conversion` INT NOT NULL DEFAULT 0,
+	`second_unit` VARCHAR(20) NOT NULL DEFAULT ''
+);
+INSERT INTO `tbl_payroll_units`(`type`, `name`, `symbol`, `decimal_place`, `first_unit`, `conversion`, `second_unit`) 
+VALUES ('Simple', 'Mins','Minutes',2, '', 0, ''), ('Simple', 'Hrs','Hours',2, '', 0, ''),  
+	   ('Compound', 'Hrs of 60 Mins','Hrs of 60 Mins',2, 'Hrs', 60, 'Mins');
+
+
+CREATE TABLE `tbl_attendance_or_production` (
+	`id` INT AUTO_INCREMENT PRIMARY KEY,
+	`name` VARCHAR(255) NOT NULL DEFAULT '',
+	`under` VARCHAR(255) NOT NULL DEFAULT '',
+	`type` VARCHAR(255) NOT NULL DEFAULT '',
+	`period_type` VARCHAR(255) NOT NULL DEFAULT '',
+	`unit` VARCHAR(255) NOT NULL DEFAULT ''
+);
+INSERT INTO `tbl_attendance_or_production`(`name`, `under`, `type`, `period_type`, `unit`) 
+VALUES ('Present', 'Primary', 'Attendance/Leave With Pay','Days', 'Days'), ('Absent', 'Primary', 'Attendance/Leave Without Pay','Days', 'Days'),  
+	   ('Overtime', 'Primary', 'Production','','Hrs of 60 Mins');
+
+CREATE TABLE `tbl_pay_head_type` (
+	`id` INT AUTO_INCREMENT PRIMARY KEY,
+    `name` VARCHAR(100) NOT NULL DEFAULT ''
+);
+INSERT INTO `tbl_pay_head_type` (`name`)
+VALUES ('Earnings for Employees'),('Deductions from Employees'),('Contributions by Employer');
+
+CREATE TABLE `tbl_pay_type` (
+	`id` INT AUTO_INCREMENT PRIMARY KEY,
+	`ph_type` INT NOT NULL,
+    `name` VARCHAR(100) NOT NULL DEFAULT '',
+	CONSTRAINT `fk_ph_type` FOREIGN KEY (`ph_type`) REFERENCES `tbl_pay_head_type`(`id`) ON DELETE CASCADE
+);
+INSERT INTO `tbl_pay_type` (`ph_type`,`name`)
+VALUES (1, 'Basic Salary'), (1, 'Others'), 
+		(2, 'SSNIT (Employee)'), (2, 'Income Tax'), (2, 'Providence Fund (Employee)'),
+		(3, 'SSNIT (Employer)'), (3, 'Providence Fund (Employer)');
+
+CREATE TABLE `tbl_pay_head` (
+	`id` INT AUTO_INCREMENT PRIMARY KEY,
+	`name` VARCHAR(100) NOT NULL DEFAULT '',
+	`pay_head_type` VARCHAR(50) NOT NULL DEFAULT '',
+	`pay_type` VARCHAR(50) NOT NULL DEFAULT '',
+	`under` VARCHAR(50) NOT NULL DEFAULT '',
+	`taxable` VARCHAR(3) NOT NULL DEFAULT '',
+	`affect_net_salary` VARCHAR(3) NOT NULL DEFAULT '',
+	`name_to_appear` VARCHAR(100) NOT NULL DEFAULT '',
+	`calculation_type` VARCHAR(50) NOT NULL DEFAULT '',
+    -- if its on attendance / production
+	`attend_or_prod_type` VARCHAR(20) NOT NULL DEFAULT '', -- it's usually present or ivertime
+    
+	`calculation_period` VARCHAR(20) NOT NULL DEFAULT '',
+	`calculation_basis` VARCHAR(20) NOT NULL DEFAULT '', -- user defined
+	`period_of` INT NOT NULL DEFAULT 0,
+    
+	`compute_on` VARCHAR(50) NOT NULL DEFAULT '',
+	`specified_formula` VARCHAR(255) NOT NULL DEFAULT '',
+	`effective_from` DATE,
+    
+	`added_at` DATETIME,
+	`updated_at` DATETIME
+    -- 
+);
+
+-- For computation type of `as computed value`
+CREATE TABLE `tbl_computation_info` (
+	`id` INT AUTO_INCREMENT PRIMARY KEY,
+	`phid` INT NOT NULL,
+	`amount_from` DECIMAL(10,2) NOT NULL DEFAULT 0,
+	`amount_to` DECIMAL(10,2) NOT NULL DEFAULT 0,
+	`slab_type` VARCHAR(15) NOT NULL,
+	`value_basis` DECIMAL(10,2) NOT NULL DEFAULT 0,
+	`added_at` DATETIME,
+	`updated_at` DATETIME,
+	CONSTRAINT `fk_compute_phid` FOREIGN KEY (`phid`) REFERENCES `tbl_pay_head`(`id`) ON DELETE CASCADE
+);
+
+-- For computation type of `as computed value`
+CREATE TABLE `tbl_specified_formula` (
+	`id` INT AUTO_INCREMENT PRIMARY KEY,
+	`phid` INT NOT NULL,
+	`symbol` CHAR(1) NOT NULL DEFAULT '',
+	`function` VARCHAR(50) NOT NULL DEFAULT '',
+	`pay_head` VARCHAR(50) NOT NULL DEFAULT '',
+	CONSTRAINT `fk_formula_phid` FOREIGN KEY (`phid`) REFERENCES `tbl_pay_head`(`id`) ON DELETE CASCADE
+);
+
+CREATE TABLE `tbl_salary_details_configuration` (
+	`id` INT AUTO_INCREMENT PRIMARY KEY,
+	`override_slab_per` VARCHAR(3) NOT NULL DEFAULT 'YES',
+	`show_pay_head_type`  VARCHAR(3) NOT NULL DEFAULT 'YES',
+	`show_calculation_type` VARCHAR(3) NOT NULL DEFAULT 'YES',
+	`show_computed_on` VARCHAR(3) NOT NULL DEFAULT 'YES'
+);
+
+CREATE TABLE `tbl_salary_details_setup` (
+	`id` INT AUTO_INCREMENT PRIMARY KEY,
+	`phid` INT NOT NULL,
+	`empOrGrID` INT NOT NULL,
+	`type` VARCHAR(50) NOT NULL DEFAULT 'employee',
+	`rate` DECIMAL(10,2),
+	CONSTRAINT `fk_salary_details_phid` FOREIGN KEY (`phid`) REFERENCES `tbl_pay_head`(`id`) ON DELETE CASCADE
+);
+
+CREATE TABLE `tbl_pay_process` (
+	`id` INT AUTO_INCREMENT PRIMARY KEY,
+	`from` DATE NOT NULL,
+	`to` DATE NOT NULL,
+	`comment` TEXT NOT NULL,
+	`processed` TINYINT DEFAULT 0,
+	`added_at` DATETIME,
+	`updated_at` DATETIME
+);
+INSERT INTO `tbl_pay_process`(`from`, `to`, `comment`, `added_at`) 
+VALUES ('2020-04-01', '2020-04-30', 'Payroll For April 01 - 30', CURRENT_TIMESTAMP);
+
+CREATE TABLE `tbl_emp_attendance_voucher` (
+	`id` INT AUTO_INCREMENT PRIMARY KEY,
+	`payid` INT NOT NULL,
+	`empid` INT NOT NULL,
+	`type` VARCHAR(50) NOT NULL,
+	`unit` VARCHAR(100) NOT NULL,
+	`basic_salary` DECIMAL(10, 2) NOT NULL DEFAULT 0,
+	`working_days` INT NOT NULL DEFAULT 0,
+	`daily_wage` DECIMAL(10, 7) AS (`basic_salary` / `working_days`) STORED,
+	`days_worked` INT NOT NULL DEFAULT 0,
+	`month_earning` DECIMAL(10, 2) AS (`daily_wage` * `days_worked`) STORED,
+	`added_at` DATETIME,
+	`updated_at` DATETIME,
+	CONSTRAINT `fk_tbl_emp_attendance_payid` FOREIGN KEY (`payid`) REFERENCES `tbl_pay_process`(`id`) ON DELETE CASCADE,
+	CONSTRAINT `fk_tbl_emp_attendance_empid` FOREIGN KEY (`empid`) REFERENCES `tbl_employee`(`id`) ON DELETE CASCADE
+);
+
+CREATE TABLE `tbl_emp_overtime_voucher` (
+	`id` INT AUTO_INCREMENT PRIMARY KEY,
+	`payid` INT NOT NULL,
+	`empid` INT NOT NULL,
+	`unit` VARCHAR(100) NOT NULL,
+	`half_basic` DECIMAL(10, 7) NOT NULL DEFAULT 0,
+	`rate` DECIMAL(10, 2) NOT NULL DEFAULT 0,
+	`hours_worked` DECIMAL(10, 2) NOT NULL DEFAULT 0,
+	`overtime_amount` DECIMAL(10, 2) AS (`rate` * `hours_worked`) STORED,
+	`percent1` DECIMAL(10, 2) NOT NULL DEFAULT 0.05,
+	`percent2` DECIMAL(10, 2) NOT NULL DEFAULT 0.1,
+	`overtime_tax` DECIMAL(10, 2) AS ((`half_basic` * `percent1`) + ((`overtime_amount` - `half_basic`) * `percent2`)) STORED,
+	`overtime_earning` DECIMAL(10, 2) AS (`overtime_amount` - `overtime_tax`) STORED,
+	`added_at` DATETIME,
+	`updated_at` DATETIME,
+	CONSTRAINT `fk_tbl_emp_production_payid` FOREIGN KEY (`payid`) REFERENCES `tbl_pay_process`(`id`) ON DELETE CASCADE,
+	CONSTRAINT `fk_tbl_emp_production_empid` FOREIGN KEY (`empid`) REFERENCES `tbl_employee`(`id`) ON DELETE CASCADE
+);
+
+CREATE TABLE `tbl_emp_attend_or_product_voucher` (
+	`id` INT AUTO_INCREMENT PRIMARY KEY,
+	`payid` INT NOT NULL,
+	`empid` INT NOT NULL,
+	`type` VARCHAR(50) NOT NULL,
+	`value` INT NOT NULL,
+	`unit` VARCHAR(100) NOT NULL,
+	`added_at` DATETIME,
+	`updated_at` DATETIME,
+	CONSTRAINT `fk_tbl_emp_atpro_payid` FOREIGN KEY (`payid`) REFERENCES `tbl_pay_process`(`id`) ON DELETE CASCADE,
+	CONSTRAINT `fk_tbl_emp_atpro_empid` FOREIGN KEY (`empid`) REFERENCES `tbl_employee`(`id`) ON DELETE CASCADE
+);
+
+CREATE TABLE `tbl_emp_taxable_earnings` (
+	`id` INT AUTO_INCREMENT PRIMARY KEY,
+	`payid` INT NOT NULL,
+	`empid` INT NOT NULL,
+	`total` DECIMAL(10, 2) NOT NULL DEFAULT 0,
+	`added_at` DATETIME,
+	`updated_at` DATETIME,
+	CONSTRAINT `fk_taxable_earnings_empid` FOREIGN KEY (`empid`) REFERENCES `tbl_employee`(`id`) ON DELETE CASCADE,
+	CONSTRAINT `fk_taxable_earnings_payid` FOREIGN KEY (`payid`) REFERENCES `tbl_pay_process`(`id`) ON DELETE CASCADE
+);
+
+CREATE TABLE `tbl_emp_applicable_taxable_earnings` (
+	`id` INT AUTO_INCREMENT PRIMARY KEY,
+	`payid` INT NOT NULL,
+	`empid` INT NOT NULL,
+	CONSTRAINT `fk_applicable_taxable_earnings_empid` FOREIGN KEY (`empid`) REFERENCES `tbl_employee`(`id`) ON DELETE CASCADE,
+	CONSTRAINT `fk_applicable_taxable_earnings_payid` FOREIGN KEY (`payid`) REFERENCES `tbl_pay_process`(`id`) ON DELETE CASCADE
+);
+
+CREATE TABLE `tbl_emp_untaxed_earnings` (
+	`id` INT AUTO_INCREMENT PRIMARY KEY,
+	`payid` INT NOT NULL,
+	`empid` INT NOT NULL,
+	`total` DECIMAL(10, 2) NOT NULL DEFAULT 0,
+	`added_at` DATETIME,
+	`updated_at` DATETIME,
+	CONSTRAINT `fk_untaxed_earnings_empid` FOREIGN KEY (`empid`) REFERENCES `tbl_employee`(`id`) ON DELETE CASCADE,
+	CONSTRAINT `fk_untaxed_earnings_payid` FOREIGN KEY (`payid`) REFERENCES `tbl_pay_process`(`id`) ON DELETE CASCADE
+);
+
+CREATE TABLE `tbl_emp_applicable_untaxed_earnings` (
+	`id` INT AUTO_INCREMENT PRIMARY KEY,
+	`payid` INT NOT NULL,
+	`empid` INT NOT NULL,
+	CONSTRAINT `fk_applicable_untaxed_earnings_empid` FOREIGN KEY (`empid`) REFERENCES `tbl_employee`(`id`) ON DELETE CASCADE,
+	CONSTRAINT `fk_applicable_untaxed_earnings_payid` FOREIGN KEY (`payid`) REFERENCES `tbl_pay_process`(`id`) ON DELETE CASCADE
+);
+
+CREATE TABLE `tbl_emp_earnings` (
+	`id` INT AUTO_INCREMENT PRIMARY KEY,
+	`payid` INT NOT NULL,
+	`empid` INT NOT NULL,
+	`total` DECIMAL(10, 2) NOT NULL DEFAULT 0,
+	`added_at` DATETIME,
+	`updated_at` DATETIME,
+	CONSTRAINT `fk_earnings_empid` FOREIGN KEY (`empid`) REFERENCES `tbl_employee`(`id`) ON DELETE CASCADE,
+	CONSTRAINT `fk_earnings_payid` FOREIGN KEY (`payid`) REFERENCES `tbl_pay_process`(`id`) ON DELETE CASCADE
+);
+
+CREATE TABLE `tbl_emp_applicable_earnings` (
+	`id` INT AUTO_INCREMENT PRIMARY KEY,
+	`payid` INT NOT NULL,
+	`empid` INT NOT NULL,
+	CONSTRAINT `fk_applicable_earnings_empid` FOREIGN KEY (`empid`) REFERENCES `tbl_employee`(`id`) ON DELETE CASCADE,
+	CONSTRAINT `fk_applicable_earnings_payid` FOREIGN KEY (`payid`) REFERENCES `tbl_pay_process`(`id`) ON DELETE CASCADE
+);
+
+CREATE TABLE `tbl_emp_deductions` (
+	`id` INT AUTO_INCREMENT PRIMARY KEY,
+	`payid` INT NOT NULL,
+	`empid` INT NOT NULL,
+	`total` DECIMAL(10, 2) NOT NULL DEFAULT 0,
+	`added_at` DATETIME,
+	`updated_at` DATETIME,
+	CONSTRAINT `fk_deductions_empid` FOREIGN KEY (`empid`) REFERENCES `tbl_employee`(`id`) ON DELETE CASCADE,
+	CONSTRAINT `fk_deductions_payid` FOREIGN KEY (`payid`) REFERENCES `tbl_pay_process`(`id`) ON DELETE CASCADE
+);
+
+CREATE TABLE `tbl_emp_applicable_deductions` (
+	`id` INT AUTO_INCREMENT PRIMARY KEY,
+	`payid` INT NOT NULL,
+	`empid` INT NOT NULL,
+	CONSTRAINT `fk_applicable_deductions_empid` FOREIGN KEY (`empid`) REFERENCES `tbl_employee`(`id`) ON DELETE CASCADE,
+	CONSTRAINT `fk_applicable_deductions_payid` FOREIGN KEY (`payid`) REFERENCES `tbl_pay_process`(`id`) ON DELETE CASCADE
+);
+
+CREATE TABLE `tbl_emp_contributions` (
+	`id` INT AUTO_INCREMENT PRIMARY KEY,
+	`payid` INT NOT NULL,
+	`empid` INT NOT NULL,
+	`total` DECIMAL(10, 2) NOT NULL DEFAULT 0,
+	`added_at` DATETIME,
+	`updated_at` DATETIME,
+	CONSTRAINT `fk_contributions_empid` FOREIGN KEY (`empid`) REFERENCES `tbl_employee`(`id`) ON DELETE CASCADE,
+	CONSTRAINT `fk_contributions_payid` FOREIGN KEY (`payid`) REFERENCES `tbl_pay_process`(`id`) ON DELETE CASCADE
+);
+
+CREATE TABLE `tbl_emp_applicable_contributions` (
+	`id` INT AUTO_INCREMENT PRIMARY KEY,
+	`payid` INT NOT NULL,
+	`empid` INT NOT NULL,
+	CONSTRAINT `fk_applicable_contributions_empid` FOREIGN KEY (`empid`) REFERENCES `tbl_employee`(`id`) ON DELETE CASCADE,
+	CONSTRAINT `fk_applicable_contributions_payid` FOREIGN KEY (`payid`) REFERENCES `tbl_pay_process`(`id`) ON DELETE CASCADE
+);
+
+CREATE TABLE `tbl_payroll` (
+	`id` INT AUTO_INCREMENT PRIMARY KEY,
+	`payid` INT NOT NULL,
+	`empid` INT NOT NULL,
+	`taxable_pay` DECIMAL(10,2) NOT NULL DEFAULT 0,
+	`income_tax` DECIMAL(10,2) NOT NULL DEFAULT 0,
+	`net_salary` DECIMAL(10,2)  AS (`taxable_pay` - `income_tax`) STORED,
+	`net_overtime` DECIMAL(10,2) NOT NULL DEFAULT 0,
+	`overall_net_salary` DECIMAL(10,2) AS (`net_salary` + `net_overtime`) STORED,
+	`added_at` DATETIME,
+	`updated_at` DATETIME,
+	CONSTRAINT `fk_pay_empID` FOREIGN KEY (`empid`) REFERENCES `tbl_employee`(`id`) ON DELETE CASCADE,
+	CONSTRAINT `fk_pay_payid` FOREIGN KEY (`payid`) REFERENCES `tbl_pay_process`(`id`) ON DELETE CASCADE
+);
