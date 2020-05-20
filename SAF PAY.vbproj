@@ -1,0 +1,381 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EC22C71A-3875-4D9E-BB24-875C50B68E83}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>SAF_PAY.My.MyApplication</StartupObject>
+    <RootNamespace>SAF_PAY</RootNamespace>
+    <AssemblyName>SAF PAY</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>SAF PAY.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>SAF PAY.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MySql.Data, Version=8.0.19.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="new forms\AccessControlForm.Designer.vb">
+      <DependentUpon>AccessControlForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="new forms\AccessControlForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="new forms\AddPayHeadForm.Designer.vb">
+      <DependentUpon>AddPayHeadForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="new forms\AddPayHeadForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="new forms\AddEmployeeOrGroupForm.Designer.vb">
+      <DependentUpon>AddEmployeeOrGroupForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="new forms\AddEmployeeOrGroupForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="new forms\AppSettings.Designer.vb">
+      <DependentUpon>AppSettings.vb</DependentUpon>
+    </Compile>
+    <Compile Include="new forms\AppSettings.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="new forms\AttendaceOrProductionVoucherForm.Designer.vb">
+      <DependentUpon>AttendaceOrProductionVoucherForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="new forms\AttendaceOrProductionVoucherForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="new forms\CreatePayPeriodForm.Designer.vb">
+      <DependentUpon>CreatePayPeriodForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="new forms\CreatePayPeriodForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="new forms\PaySheetForm.Designer.vb">
+      <DependentUpon>PaySheetForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="new forms\PaySheetForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="new forms\ProcessPayrollForm.Designer.vb">
+      <DependentUpon>ProcessPayrollForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="new forms\ProcessPayrollForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="new forms\SalarySetupVerificationForm.Designer.vb">
+      <DependentUpon>SalarySetupVerificationForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="new forms\SalarySetupVerificationForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="new forms\SelectSlabTypeForm.Designer.vb">
+      <DependentUpon>SelectSlabTypeForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="new forms\SelectSlabTypeForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="new forms\SelectVoucherTypeForm.Designer.vb">
+      <DependentUpon>SelectVoucherTypeForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="new forms\SelectVoucherTypeForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="new forms\SalarySetupStartTypeFrom.Designer.vb">
+      <DependentUpon>SalarySetupStartTypeFrom.vb</DependentUpon>
+    </Compile>
+    <Compile Include="new forms\SalarySetupStartTypeFrom.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="new forms\EditSetupForm.Designer.vb">
+      <DependentUpon>EditSetupForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="new forms\EditSetupForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="new forms\EmployeeSetupForm.Designer.vb">
+      <DependentUpon>EmployeeSetupForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="new forms\EmployeeSetupForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="new forms\FormulaTypeSelectionForm.Designer.vb">
+      <DependentUpon>FormulaTypeSelectionForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="new forms\FormulaTypeSelectionForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="new forms\EmployeeForm.Designer.vb">
+      <DependentUpon>EmployeeForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="new forms\EmployeeForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="new forms\FormulaForm.Designer.vb">
+      <DependentUpon>FormulaForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="new forms\FormulaForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="new forms\PayHeadCreationForm.Designer.vb">
+      <DependentUpon>PayHeadCreationForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="new forms\PayHeadCreationForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="new forms\PayHeadsForm.Designer.vb">
+      <DependentUpon>PayHeadsForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="new forms\PayHeadsForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="new forms\PayrollForm.Designer.vb">
+      <DependentUpon>PayrollForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="new forms\PayrollForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="new forms\SalaryDetailsConfiguartionForm.Designer.vb">
+      <DependentUpon>SalaryDetailsConfiguartionForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="new forms\SalaryDetailsConfiguartionForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="new forms\SetupSalaryForm.Designer.vb">
+      <DependentUpon>SetupSalaryForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="new forms\SetupSalaryForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mods\AdminModule.vb" />
+    <Compile Include="mods\DataModule.vb" />
+    <Compile Include="mods\DBModule.vb" />
+    <Compile Include="mods\EmployeeModule.vb" />
+    <Compile Include="mods\PayDayModule.vb" />
+    <Compile Include="mods\ProcessPayrollModule.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="new forms\LoginForm.Designer.vb">
+      <DependentUpon>LoginForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="new forms\LoginForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="simple\EmployeeDetailsForm.Designer.vb">
+      <DependentUpon>EmployeeDetailsForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="simple\EmployeeDetailsForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="simple\MainForm.Designer.vb">
+      <DependentUpon>MainForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="simple\MainForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="simple\PayHeadsDetailsForm.Designer.vb">
+      <DependentUpon>PayHeadsDetailsForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="simple\PayHeadsDetailsForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="simple\PayrollDetailsForm.Designer.vb">
+      <DependentUpon>PayrollDetailsForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="simple\PayrollDetailsForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="simple\SalaryDetailsForm.Designer.vb">
+      <DependentUpon>SalaryDetailsForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="simple\SalaryDetailsForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="new forms\AccessControlForm.resx">
+      <DependentUpon>AccessControlForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="new forms\AddPayHeadForm.resx">
+      <DependentUpon>AddPayHeadForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="new forms\AddEmployeeOrGroupForm.resx">
+      <DependentUpon>AddEmployeeOrGroupForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="new forms\AppSettings.resx">
+      <DependentUpon>AppSettings.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="new forms\AttendaceOrProductionVoucherForm.resx">
+      <DependentUpon>AttendaceOrProductionVoucherForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="new forms\CreatePayPeriodForm.resx">
+      <DependentUpon>CreatePayPeriodForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="new forms\PaySheetForm.resx">
+      <DependentUpon>PaySheetForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="new forms\ProcessPayrollForm.resx">
+      <DependentUpon>ProcessPayrollForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="new forms\SalarySetupVerificationForm.resx">
+      <DependentUpon>SalarySetupVerificationForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="new forms\SelectSlabTypeForm.resx">
+      <DependentUpon>SelectSlabTypeForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="new forms\SelectVoucherTypeForm.resx">
+      <DependentUpon>SelectVoucherTypeForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="new forms\SalarySetupStartTypeFrom.resx">
+      <DependentUpon>SalarySetupStartTypeFrom.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="new forms\EditSetupForm.resx">
+      <DependentUpon>EditSetupForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="new forms\EmployeeSetupForm.resx">
+      <DependentUpon>EmployeeSetupForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="new forms\FormulaTypeSelectionForm.resx">
+      <DependentUpon>FormulaTypeSelectionForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="new forms\EmployeeForm.resx">
+      <DependentUpon>EmployeeForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="new forms\FormulaForm.resx">
+      <DependentUpon>FormulaForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="new forms\PayHeadCreationForm.resx">
+      <DependentUpon>PayHeadCreationForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="new forms\PayHeadsForm.resx">
+      <DependentUpon>PayHeadsForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="new forms\PayrollForm.resx">
+      <DependentUpon>PayrollForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="new forms\SalaryDetailsConfiguartionForm.resx">
+      <DependentUpon>SalaryDetailsConfiguartionForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="new forms\SetupSalaryForm.resx">
+      <DependentUpon>SetupSalaryForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="new forms\LoginForm.resx">
+      <DependentUpon>LoginForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="simple\EmployeeDetailsForm.resx">
+      <DependentUpon>EmployeeDetailsForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="simple\MainForm.resx">
+      <DependentUpon>MainForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="simple\PayHeadsDetailsForm.resx">
+      <DependentUpon>PayHeadsDetailsForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="simple\PayrollDetailsForm.resx">
+      <DependentUpon>PayrollDetailsForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="simple\SalaryDetailsForm.resx">
+      <DependentUpon>SalaryDetailsForm.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="mods\SQLTextFile.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
